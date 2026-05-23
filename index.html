@@ -202,17 +202,6 @@
   }
   .map-wrap iframe{width:100%;height:100%;border:0;filter:grayscale(.4) contrast(1.1) brightness(.9)}
 
-  /* QR */
-  .qr-card{
-    max-width:340px;margin:0 auto;padding:30px;border-radius:24px;text-align:center;
-    background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
-    border:1px solid var(--line);backdrop-filter:blur(10px);
-  }
-  #qrcode{display:inline-block;padding:14px;background:#fff;border-radius:14px;margin-bottom:18px;box-shadow:0 0 30px rgba(212,175,55,.3)}
-  #qrcode svg{display:block}
-  .qr-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .qr-actions .btn{padding:10px 18px;font-size:.85rem}
-
   /* ELEGANT MODAL (AGENDA) */
   .modal-overlay{
     position:fixed;inset:0;background:rgba(5,5,5,.85);backdrop-filter:blur(16px);
@@ -242,37 +231,91 @@
   .modal-section-text{font-size:.95rem;color:var(--white);line-height:1.5}
   .modal-section-text span{color:var(--muted);font-size:.82rem;display:block;margin-top:2px}
 
-  /* PREMIUM FOOTER */
+  /* PREMIUM FOOTER ULTRA ESTILIZADO */
   footer.elegant-footer{
-    padding:80px 0 40px;margin-top:90px;position:relative;
-    background:linear-gradient(180deg, #0e0e0e 0%, #050505 100%);
-    border-top:1px solid rgba(212,175,55,0.15);
+    padding:90px 0 40px;margin-top:120px;position:relative;
+    background:linear-gradient(180deg, #0e0e0e 0%, #060606 50%, #020202 100%);
+    border-top:1px solid rgba(212,175,55,0.18);
   }
   footer.elegant-footer::before {
     content: "";position:absolute;top:0;left:50%;transform:translateX(-50%);
-    width:250px;height:1px;background:linear-gradient(90deg,transparent, var(--gold), transparent);
+    width:400px;max-width:90%;height:2px;
+    background:linear-gradient(90deg,transparent, var(--gold), var(--gold-2), var(--gold), transparent);
+    box-shadow: 0 0 20px rgba(212,175,55,0.6);
   }
-  .footer-grid{display:grid;grid-template-columns:1.20fr 0.85fr 0.85fr 0.85fr 1.05fr;gap:24px;margin-bottom:50px}
-  .footer-col h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--gold);margin-bottom:20px;font-weight:600;letter-spacing:0.5px;position:relative;padding-bottom:6px}
-  .footer-col h4::after{content:"";position:absolute;bottom:0;left:0;width:30px;height:1px;background:var(--gold)}
-  .footer-col p{color:var(--muted);font-size:.9rem;line-height:1.6}
-  .footer-logo-wrap{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-  .footer-logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid var(--gold);box-shadow:0 0 10px rgba(212,175,55,0.2)}
-  .footer-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 0.9fr 0.9fr 0.9fr 1.1fr;gap:32px;margin-bottom:60px}
+  .footer-col h4{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.35rem;color:var(--gold-2);
+    margin-bottom:24px;font-weight:600;
+    letter-spacing:1px;position:relative;
+    padding-bottom:8px;
+  }
+  .footer-col h4::after{
+    content:"";position:absolute;bottom:0;left:0;
+    width:35px;height:1.5px;
+    background:linear-gradient(90deg, var(--gold), var(--gold-2));
+  }
+  .footer-col p{color:var(--muted);font-size:.9rem;line-height:1.65}
+  .footer-logo-wrap{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+  .footer-logo-img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:1.5px solid var(--gold);box-shadow:0 0 14px rgba(212,175,55,0.35)}
+  .footer-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600}
   
   .footer-links-list{list-style:none}
-  .footer-links-list li{margin-bottom:12px;display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted)}
-  .footer-links-list a{color:var(--muted);text-decoration:none;transition:.3s;display:inline-flex;align-items:center;gap:8px}
-  .footer-links-list a:hover{color:var(--gold-2);transform:translateX(3px)}
-  .footer-links-list a i{color:var(--gold);font-size:0.85rem;width:14px;text-align:center}
+  .footer-links-list li{margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted)}
+  .footer-links-list a{color:var(--muted);text-decoration:none;transition:.3s;display:inline-flex;align-items:center;gap:10px}
+  .footer-links-list a:hover{color:var(--white);transform:translateX(4px)}
   
-  .footer-qr-container{display:flex;flex-direction:column;align-items:flex-start}
-  .footer-qr-box{padding:10px;background:#fff;border-radius:12px;margin-bottom:12px;display:inline-block;box-shadow:0 4px 20px rgba(0,0,0,0.5)}
+  /* Ícones dos Links do Rodapé Dourados e Polidos */
+  .footer-links-list a i{
+    color:var(--gold);
+    font-size:0.95rem;
+    width:20px;
+    text-align:center;
+    transition:.3s;
+  }
+  .footer-links-list a:hover i{
+    color:var(--gold-2);
+    transform: scale(1.1);
+    text-shadow: 0 0 8px rgba(245,217,122,0.6);
+  }
+  
+  /* Container e Caixa do QR Code no Rodapé */
+  .footer-qr-container{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .footer-qr-box{
+    padding:14px;
+    background:#fff;
+    border-radius:16px;
+    margin-bottom:16px;
+    display:inline-block;
+    box-shadow:0 12px 35px rgba(0,0,0,0.7), 0 0 15px rgba(212,175,55,0.15);
+    transition: .4s ease;
+    border: 1px solid rgba(212,175,55,0.2);
+  }
+  .footer-qr-box:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:0 16px 40px rgba(0,0,0,0.8), 0 0 25px rgba(212,175,55,0.3);
+  }
   .footer-qr-box svg{display:block}
-  .footer-qr-text{font-size:.8rem;color:var(--muted);margin-bottom:14px;line-height:1.4}
-  .footer-qr-btn{padding:8px 18px;font-size:.8rem;border-radius:999px}
+  .footer-qr-text{font-size:.82rem;color:var(--muted);margin-bottom:16px;line-height:1.4;max-width:180px}
+  .footer-qr-btn{
+    padding:9px 20px;
+    font-size:.8rem;
+    border-radius:999px;
+    width:100%;
+    justify-content:center;
+    box-shadow: 0 4px 12px rgba(212,175,55,0.2);
+  }
 
-  .footer-bottom{text-align:center;padding-top:30px;border-top:1px solid rgba(212,175,55,0.08);color:var(--muted);font-size:.85rem;letter-spacing:0.5px}
+  .footer-bottom{
+    text-align:center;
+    padding-top:35px;
+    margin-top:20px;
+    border-top:1px solid rgba(212,175,55,0.08);
+    color:var(--muted);
+    font-size:.85rem;
+    letter-spacing:0.5px;
+  }
 
   /* Reveal animation */
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
@@ -292,6 +335,9 @@
 
   @media (max-width:1100px){
     .footer-grid{grid-template-columns:1.2fr 1fr 1fr;gap:35px}
+    .footer-qr-container{align-items: flex-start; text-align: left}
+    .footer-qr-text{max-width: 100% Exposition}
+    .footer-qr-btn{width: auto}
   }
   @media (max-width:768px){
     .footer-grid{grid-template-columns:1fr 1fr;gap:30px}
@@ -300,7 +346,9 @@
     section{padding:70px 0}
     .hero-logo{width:120px;height:120px}
     .form-card{padding:28px 20px}
-    .footer-grid{grid-template-columns:1fr;gap:30px}
+    .footer-grid{grid-template-columns:1fr;gap:35px;margin-bottom:40px}
+    .footer-qr-container{align-items: center; text-align: center}
+    .footer-qr-btn{width: 100%}
   }
 </style>
 </head>
@@ -447,23 +495,6 @@
   </div>
 </section>
 
-<section id="qr">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-eyebrow">Compartilhe</div>
-      <h2 class="section-title">QR Code <span class="gold-text">exclusivo</span></h2>
-      <p class="section-desc">Escaneie ou baixe o QR Code para acessar nossa página.</p>
-    </div>
-    <div class="qr-card reveal">
-      <div id="qrcode"><svg id="qr-svg" xmlns="http://www.w3.org/2000/svg"></svg></div>
-      <div class="qr-actions">
-        <button class="btn btn-primary" onclick="baixarQR()">⬇ Baixar</button>
-        <button class="btn btn-ghost" onclick="compartilharQR()">↗ Compartilhar</button>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div id="agendaModal" class="modal-overlay" onclick="closeAgendaViaOverlay(event)">
   <div class="modal-content">
     <button class="modal-close" onclick="closeAgenda()">✕</button>
@@ -514,9 +545,9 @@
       <div class="footer-col">
         <h4>Canais de Contato</h4>
         <ul class="footer-links-list">
-          <li><a href="https://wa.me/554284238313" target="_blank" rel="noopener">💬 (42) 8423-8313</a></li>
-          <li><a href="tel:+554284238313">📞 (42) 8423-8313</a></li>
-          <li><a href="https://www.instagram.com/otica_precisao_cantagalo/" target="_blank" rel="noopener">✨ @otica_precisao_cantagalo</a></li>
+          <li><a href="https://wa.me/554284238313" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> (42) 8423-8313</a></li>
+          <li><a href="tel:+554284238313"><i class="fa-solid fa-phone"></i> (42) 8423-8313</a></li>
+          <li><a href="https://www.instagram.com/otica_precisao_cantagalo/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> @otica_precisao_cantagalo</a></li>
         </ul>
       </div>
 
@@ -533,7 +564,7 @@
       <div class="footer-col">
         <h4>Nossa Sede</h4>
         <ul class="footer-links-list">
-          <li><a href="https://www.google.com/maps/place/otica+precisao+canta+galo/data=!4m2!3m1!1s0x0:0xbb0865c8d9c004ba?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener">📍 Centro — Cantagalo (PR)</a></li>
+          <li><a href="https://www.google.com/maps/place/otica+precisao+canta+galo/data=!4m2!3m1!1s0x0:0xbb0865c8d9c004ba?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Centro — Cantagalo (PR)</a></li>
         </ul>
         <p style="margin-top: 6px; font-size: 0.85rem; color: var(--muted);">
           <span style="color:var(--gold); display:inline;">Horários de Atendimento:</span><br>
@@ -547,8 +578,8 @@
         <div class="footer-qr-box">
           <svg id="footer-qr-svg" xmlns="http://www.w3.org/2000/svg"></svg>
         </div>
-        <p class="footer-qr-text">Aponte a câmera do celular para abrir nosso ecossistema oficial digital instantaneamente.</p>
-        <button class="btn btn-primary footer-qr-btn" onclick="baixarQR()">⬇ Baixar QR</button>
+        <p class="footer-qr-text">Aponte a câmera para acessar nosso ecossistema oficial digital.</p>
+        <button class="btn btn-primary footer-qr-btn" onclick="baixarQR()">⬇ Salvar QR</button>
       </div>
 
     </div>
@@ -640,17 +671,13 @@
         qr.addData(SITE_URL);
         qr.make();
         
-        // QR Code Principal
-        renderQRToTarget(qr, 'qr-svg', 220);
-        
-        // QR Code do Rodapé
-        renderQRToTarget(qr, 'footer-qr-svg', 130);
+        // Renderiza o QR Code do Rodapé
+        renderQRToTarget(qr, 'footer-qr-svg', 140);
 
       } catch(err){ console.error('QR error:', err); }
     };
     s.onerror = function(){
       const fallbackHtml = `<a href="${SITE_URL}" style="color:#d4af37;font-size:.85rem;word-break:break-all">${SITE_URL}</a>`;
-      document.getElementById('qrcode').innerHTML = fallbackHtml;
       const fBox = document.querySelector('.footer-qr-box');
       if(fBox) fBox.innerHTML = fallbackHtml;
     };
@@ -658,7 +685,8 @@
   })();
 
   function svgToPNGDataURL(cb){
-    const svg = document.getElementById('qr-svg');
+    const svg = document.getElementById('footer-qr-svg');
+    if(!svg) return cb(null);
     const w = 440, h = 440;
     const serialized = new XMLSerializer().serializeToString(svg);
     const blob = new Blob([serialized], {type:'image/svg+xml;charset=utf-8'});
@@ -680,7 +708,7 @@
 
   function baixarQR(){
     svgToPNGDataURL(function(dataURL){
-      if(!dataURL){ alert('Não foi possível gerar o PNG. Tente novamente.'); return; }
+      if(!dataURL){ alert('Não foi possível gerar a imagem. Tente novamente.'); return; }
       const a = document.createElement('a');
       a.href = dataURL;
       a.download = 'qrcode-oticas-precisao-cantagalo.png';
@@ -688,21 +716,6 @@
       a.click();
       document.body.removeChild(a);
     });
-  }
-
-  async function compartilharQR(){
-    if(navigator.share){
-      try{
-        await navigator.share({ title:'Óticas Precisão Cantagalo', text:'Acesse nossa página:', url: SITE_URL });
-        return;
-      } catch(err){ if(err.name==='AbortError') return; }
-    }
-    try{
-      await navigator.clipboard.writeText(SITE_URL);
-      alert('Link copiado!\n' + SITE_URL);
-    } catch {
-      prompt('Copie o link:', SITE_URL);
-    }
   }
 </script>
 </body>
