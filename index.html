@@ -60,40 +60,7 @@
     --grid-line: rgba(255, 255, 255, 0.01);
   }
 
-  /* ─── TEMA CLARO ─── */
-  html.light {
-    --bg: #f7f3ee;
-    --bg-2: #efe9e0;
-    --bg-3: #e8e0d4;
-    --surface: rgba(0, 0, 0, 0.025);
-    --surface-hover: rgba(168, 128, 31, 0.07);
-    --border: rgba(0, 0, 0, 0.07);
-    --border-gold: rgba(168, 128, 31, 0.3);
-    --text-main: #1a1409;
-    --text-muted: #7a6e5f;
-    --nav-bg: rgba(247, 243, 238, 0.88);
-    --nav-border: rgba(168, 128, 31, 0.18);
-    --footer-bg: #ede6db;
-    --promo-bg-start: #ede6db;
-    --promo-bg-end: #e8e0d4;
-    --modal-bg-start: #f4efe8;
-    --modal-bg-end: #ede6db;
-    --input-bg: rgba(0, 0, 0, 0.04);
-    --input-focus-bg: rgba(255, 255, 255, 0.9);
-    --map-filter: grayscale(0.2) contrast(1.02) brightness(1.05);
-    --map-filter-hover: grayscale(0) contrast(1) brightness(1.08);
-    --bg-gradient-1: rgba(168, 128, 31, 0.07);
-    --bg-gradient-2: rgba(168, 128, 31, 0.04);
-    --bg-gradient-3: rgba(168, 128, 31, 0.05);
-    --grid-line: rgba(0, 0, 0, 0.015);
-    --gold: #a8801f;
-    --gold-2: #7a5a0f;
-    --gold-deep: #5c4010;
-    --line: rgba(168, 128, 31, 0.18);
-    --shadow-gold: 0 10px 40px -10px rgba(168, 128, 31, 0.28);
-    --white: #1a1409;
-    --muted: #7a6e5f;
-  }
+
   
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -146,52 +113,9 @@
     text-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
   }
 
-  html.light .gold-text {
-    background: linear-gradient(135deg, #a8801f 0%, #7a5a0f 45%, #5c4010 80%, #a8801f 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
 
-  /* ─── BOTÃO TEMA ─── */
-  .theme-toggle {
-    position: fixed;
-    bottom: 100px;
-    right: 28px;
-    z-index: 99;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--border-gold);
-    background: var(--nav-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    transition: var(--transition);
-    color: var(--gold);
-    font-size: 1.05rem;
-  }
 
-  .theme-toggle:hover {
-    transform: translateY(-2px) scale(1.08);
-    border-color: var(--gold);
-    box-shadow: 0 6px 24px rgba(212,175,55,0.25);
-  }
 
-  .theme-toggle svg {
-    width: 18px;
-    height: 18px;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-  }
-
-  .theme-toggle .icon-sun { display: block; }
-  .theme-toggle .icon-moon { display: none; }
-  html.light .theme-toggle .icon-sun { display: none; }
-  html.light .theme-toggle .icon-moon { display: block; }
 
   /* ─── NAV ─── */
   nav {
@@ -1534,16 +1458,7 @@
   </div>
 </div>
 
-<!-- BOTÃO FLUTUANTE TEMA -->
-<button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
-  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="4"/>
-    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-  </svg>
-  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-  </svg>
-</button>
+
 
 <!-- BOTÃO FLUTUANTE WHATSAPP -->
 <a href="https://wa.me/554284238313" target="_blank" rel="noopener noreferrer" class="float-wa" aria-label="Falar pelo WhatsApp">
@@ -1554,23 +1469,7 @@
   // Ano dinâmico
   document.getElementById('ano').textContent = new Date().getFullYear();
 
-  // ─── TEMA CLARO / ESCURO ───
-  const themeBtn = document.getElementById('theme-toggle');
 
-  // Padrão sempre escuro; só aplica claro se o usuário salvou explicitamente
-  const savedTheme = localStorage.getItem('otica-theme');
-  if (savedTheme === 'light') {
-    document.documentElement.classList.add('light');
-  } else {
-    document.documentElement.classList.remove('light');
-    localStorage.setItem('otica-theme', 'dark');
-  }
-
-  themeBtn.addEventListener('click', () => {
-    const isLight = document.documentElement.classList.toggle('light');
-    localStorage.setItem('otica-theme', isLight ? 'light' : 'dark');
-    themeBtn.setAttribute('aria-label', isLight ? 'Mudar para tema escuro' : 'Mudar para tema claro');
-  });
 
   // ─── MENU MOBILE ───
   const hamburger = document.getElementById('nav-hamburger');
