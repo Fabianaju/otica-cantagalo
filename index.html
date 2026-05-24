@@ -1556,8 +1556,16 @@
 
   // ─── TEMA CLARO / ESCURO ───
   const themeBtn = document.getElementById('theme-toggle');
+
+  // Sempre começa escuro, exceto se o usuário escolheu claro manualmente
   const savedTheme = localStorage.getItem('otica-theme');
-  if (savedTheme === 'light') document.documentElement.classList.add('light');
+  if (savedTheme === 'light') {
+    document.documentElement.classList.add('light');
+  } else {
+    // Garante que tema escuro está ativo (remove 'light' se estiver)
+    document.documentElement.classList.remove('light');
+    localStorage.setItem('otica-theme', 'dark');
+  }
 
   themeBtn.addEventListener('click', () => {
     const isLight = document.documentElement.classList.toggle('light');
