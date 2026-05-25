@@ -298,7 +298,51 @@
     overflow: hidden;
   }
 
+  /* Vídeo de fundo da hero */
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hero-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
+  /* Overlay: escurece e mantém o clima dourado do tema */
+  .hero-video-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(to bottom,
+        rgba(6,6,6,0.60) 0%,
+        rgba(6,6,6,0.35) 40%,
+        rgba(6,6,6,0.65) 100%),
+      radial-gradient(ellipse at center, rgba(212,175,55,0.07) 0%, transparent 70%);
+  }
+
   header.hero .container { position: relative; z-index: 2; }
+
+  /* Scroll indicator também fica acima do vídeo */
+  .scroll-indicator { z-index: 2; }
+
+  @media (max-width: 768px) {
+    .hero-video-overlay {
+      background:
+        linear-gradient(to bottom,
+          rgba(6,6,6,0.70) 0%,
+          rgba(6,6,6,0.50) 50%,
+          rgba(6,6,6,0.75) 100%);
+    }
+  }
 
   /* SCROLL INDICATOR */
   .scroll-indicator {
@@ -710,6 +754,25 @@
   
   .form-card .btn { width: 100%; justify-content: center; margin-top: 10px; padding: 16px; }
 
+  .form-wa-shortcut {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    background: rgba(37, 211, 102, 0.08);
+    border: 1px solid rgba(37, 211, 102, 0.25);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .form-wa-shortcut i { color: #25d366; font-size: 1.2rem; flex-shrink: 0; }
+  .form-wa-shortcut a { color: #25d366; font-weight: 600; text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .form-wa-shortcut { display: flex; }
+  }
+
   /* ─── PROMO CARDS ─── */
   .promo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
   
@@ -767,6 +830,35 @@
 
   /* ─── MAP ─── */
   .map-container { max-width: 900px; margin: 0 auto; }
+
+  /* Card de endereço: visível só no mobile, acima do mapa */
+  .map-address-card {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border-gold);
+    border-radius: 20px;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+  }
+  .map-address-info { display: flex; align-items: center; gap: 14px; }
+  .map-address-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: var(--surface-hover);
+    border: 1px solid var(--border-gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: var(--gold); flex-shrink: 0;
+  }
+  .map-address-title { font-size: 1rem; font-weight: 600; color: var(--text-main); }
+  .map-address-sub { font-size: 0.82rem; color: var(--text-muted); margin-top: 3px; }
+  .map-address-btn { width: 100%; justify-content: center; font-size: 1rem; padding: 15px; }
+
+  @media (max-width: 768px) {
+    .map-address-card { display: flex; }
+    .map-btn-container { display: none; } /* botão abaixo some, o card já tem */
+  }
   
   .map-wrap {
     border-radius: 24px;
@@ -1074,10 +1166,26 @@
     .promo-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: repeat(2, 1fr); }
     header.hero { min-height: unset; height: auto; padding-top: 110px; padding-bottom: 56px; }
-    .hero-stats { display: none; }
     .scroll-indicator { display: none; }
     .hero-sub { display: none; }
     .theme-toggle { bottom: 90px; right: 20px; }
+
+    /* Hero stats: versão compacta 2x2 no mobile */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 16px 12px;
+      max-width: 100%;
+    }
+    .hero-stat { padding: 10px 12px; min-width: unset; }
+    .hero-stat-num { font-size: 1.5rem; }
+    .hero-stat-label { font-size: 0.65rem; }
+    .hero-stat-divider { display: none; }
+
+    /* No mobile: só botão principal em destaque, os outros viram links */
+    .hero-btn-secondary { display: none; }
+    .hero-links-mobile { display: flex; gap: 20px; justify-content: center; margin-top: 10px; }
   }
   
   @media (max-width: 480px) {
@@ -1086,10 +1194,20 @@
     header.hero { padding-top: 90px; padding-bottom: 40px; }
     .hero-buttons { flex-direction: column; width: 100%; max-width: 280px; margin: 0 auto; gap: 10px; }
     .hero-buttons .btn { width: 100%; padding: 13px 20px; font-size: 0.85rem; }
+    .hero-links-mobile { display: flex !important; }
     .tagline { font-size: 1rem; margin-bottom: 8px; }
     h1.brand { font-size: clamp(1.7rem, 7vw, 2.2rem); margin-bottom: 10px; }
-    .actions-grid { grid-template-columns: 1fr; }
-    .action-card { padding: 24px 20px; }
+    .actions-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .action-card {
+      padding: 20px 14px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .action-icon { width: 48px; height: 48px; font-size: 1.2rem; }
+    .action-title { font-size: 0.9rem; }
+    .action-sub { font-size: 0.75rem; }
     .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
     .footer-logo-wrap { justify-content: center; }
     .footer-col h4::after { left: 50%; transform: translateX(-50%); }
@@ -1099,6 +1217,7 @@
     .float-wa { bottom: 20px; right: 20px; width: 54px; height: 54px; }
     .promo-grid { grid-template-columns: 1fr; }
     .map-wrap { aspect-ratio: 4 / 3; }
+    .footer-qr-container { display: none; }
   }
 </style>
 </head>
@@ -1131,6 +1250,22 @@
 </nav>
 
 <header class="hero">
+
+  <!-- Vídeo de fundo -->
+  <div class="hero-video" aria-hidden="true">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="https://fabianaju.github.io/otica-reserva-do-iguacu/logo.jpeg"
+    >
+      <source src="https://raw.githubusercontent.com/Fabianaju/otica-cantagalo/main/oticavideo.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+  </div>
+
   <div class="container">
     <div class="section-eyebrow">Óticas Precisão Cantagalo</div>
     <h1 class="brand serif">Enxergue o mundo<br/>com mais <span class="gold-text">estilo e precisão</span>.</h1>
@@ -1138,8 +1273,12 @@
     <p class="hero-sub">Armações modernas, lentes premium e atendimento especializado para uma experiência única.</p>
     <div class="hero-buttons">
       <a href="https://wa.me/554284238313" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> Atendimento WhatsApp</a>
-      <a href="#" class="btn btn-ghost" onclick="abrirConsulta(event)"><i class="fa-regular fa-calendar-days"></i> Ver Agenda Oculista</a>
-      <a href="https://www.instagram.com/otica_precisao_cantagalo/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost"><i class="fa-brands fa-instagram"></i> Seguir no Instagram</a>
+      <a href="#" class="btn btn-ghost hero-btn-secondary" onclick="abrirConsulta(event)"><i class="fa-regular fa-calendar-days"></i> Ver Agenda Oculista</a>
+      <a href="https://www.instagram.com/otica_precisao_cantagalo/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost hero-btn-secondary"><i class="fa-brands fa-instagram"></i> Seguir no Instagram</a>
+    </div>
+    <div class="hero-links-mobile" style="display:none;">
+      <a href="#" onclick="abrirConsulta(event)" style="color:var(--gold);font-size:0.85rem;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px;"><i class="fa-regular fa-calendar-days"></i> Agenda</a>
+      <a href="https://www.instagram.com/otica_precisao_cantagalo/" target="_blank" rel="noopener noreferrer" style="color:var(--text-muted);font-size:0.85rem;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:6px;"><i class="fa-brands fa-instagram"></i> Instagram</a>
     </div>
 
     <div class="hero-stats">
@@ -1258,6 +1397,11 @@
       <p class="section-desc">Preencha os dados e entraremos em contato imediatamente pelo WhatsApp.</p>
     </div>
     <form class="form-card reveal" id="form-contato" onsubmit="enviarWhats(event)" novalidate>
+      <!-- Atalho WhatsApp direto (visível no mobile) -->
+      <div class="form-wa-shortcut">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>Prefere falar direto? <a href="https://wa.me/554284238313" target="_blank" rel="noopener noreferrer">Clique aqui →</a></span>
+      </div>
       <div class="field">
         <label for="nome">Nome Completo</label>
         <input id="nome" name="nome" type="text" placeholder="Seu nome completo" autocomplete="name"/>
@@ -1341,6 +1485,20 @@
       <p class="section-desc">Estamos prontos para receber você com toda a atenção que merece.</p>
     </div>
     <div class="map-container">
+      <!-- Card de endereço mobile (aparece só no mobile, acima do mapa) -->
+      <div class="map-address-card reveal">
+        <div class="map-address-info">
+          <div class="map-address-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <div class="map-address-title">Centro — Cantagalo (PR)</div>
+            <div class="map-address-sub">Seg–Sex: 08:00–18:00 · Sáb: 08:30–11:30</div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/place/otica+precisao+canta+galo/data=!4m2!3m1!1s0x0:0xbb0865c8d9c004ba?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" class="btn btn-primary map-address-btn">
+          <i class="fa-solid fa-diamond-turn-right"></i> Navegar agora
+        </a>
+      </div>
+
       <div class="map-wrap reveal">
         <iframe loading="lazy" allowfullscreen title="Mapa de Localização Óticas Precisão Cantagalo"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3601!2d-52.0!3d-25.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3Axbb0865c8d9c004ba!2sOtica+Precisao+Canta+Galo!5e0!3m2!1spt!2sbr!4v1"></iframe>
